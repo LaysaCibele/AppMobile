@@ -12,18 +12,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppMobile">
         <activity
+            android:name=".TelaLogin"
+            android:exported="false" />
+        <activity
             android:name=".TelaInicial"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".MainActivity"
-            android:exported="false">
-        </activity>
+            android:exported="false"></activity>
 
         <meta-data
             android:name="preloaded_fonts"

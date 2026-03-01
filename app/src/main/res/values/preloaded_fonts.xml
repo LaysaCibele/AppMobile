@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <array name="preloaded_fonts" translatable="false">
+        <item>@font/gayathri</item>
+        <item>@font/gayathri_bold</item>
         <item>@font/josefin_slab_thin</item>
     </array>
 </resources>

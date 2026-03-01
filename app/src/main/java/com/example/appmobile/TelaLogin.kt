@@ -1,29 +1,20 @@
 package com.example.appmobile
 
-import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
-import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
-class TelaInicial : AppCompatActivity() {
+class TelaLogin : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_tela_inicial)
+        setContentView(R.layout.activity_tela_login)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        val botaoEntrarInicial = findViewById<Button>(R.id.btnEntrarInicial)
-        botaoEntrarInicial.setOnClickListener {
-            val intent = Intent(this, TelaLogin::class.java)
-            startActivity(intent)
-        }
-
     }
 }

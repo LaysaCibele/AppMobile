@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TelaLogin">
+
+    <ImageView
+        android:id="@+id/fundoTelaLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/img_fundotela2e3" />
+
+    <ImageView
+        android:id="@+id/fundoLogin"
+        android:layout_width="317dp"
+        android:layout_height="356dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/fundoTelaLogin"
+        app:layout_constraintVertical_bias="0.474"
+        app:srcCompat="@drawable/img_bloco_login" />
+
+    <ImageView
+        android:id="@+id/iconeSenha"
+        android:layout_width="287dp"
+        android:layout_height="59dp"
+        android:layout_marginTop="156dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.516"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/fundoLogin"
+        app:srcCompat="@drawable/ic_inputs" />
+
+    <ImageView
+        android:id="@+id/iconeUsuario"
+        android:layout_width="287dp"
+        android:layout_height="59dp"
+        android:layout_marginTop="68dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/fundoLogin"
+        app:srcCompat="@drawable/ic_inputs" />
+
+    <EditText
+        android:id="@+id/hintUsuario"
+        android:layout_width="246dp"
+        android:layout_height="64dp"
+        android:background="@android:color/transparent"
+        android:ems="10"
+        android:hint="Nome de Usuário"
+        android:inputType="text"
+        app:layout_constraintBottom_toBottomOf="@+id/iconeUsuario"
+        app:layout_constraintEnd_toEndOf="@+id/iconeUsuario"
+        app:layout_constraintHorizontal_bias="0.488"
+        app:layout_constraintStart_toStartOf="@+id/iconeUsuario"
+        app:layout_constraintTop_toTopOf="@+id/iconeUsuario"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <EditText
+        android:id="@+id/hintSenha"
+        android:layout_width="280dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="16dp"
+        android:background="@android:color/transparent"
+        android:ems="10"
+        android:hint="Senha"
+        android:inputType="text"
+        app:layout_constraintBottom_toBottomOf="@+id/iconeSenha"
+        app:layout_constraintStart_toStartOf="@+id/iconeSenha"
+        app:layout_constraintTop_toTopOf="@+id/iconeSenha"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/tituloEntre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/gayathri_bold"
+        android:text="Entre"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/fundoLogin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/fundoLogin"
+        app:layout_constraintVertical_bias="0.084" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        android:fontFamily="@font/gayathri"
+        android:text="Usuário"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@+id/iconeUsuario"
+        app:layout_constraintHorizontal_bias="0.02"
+        app:layout_constraintStart_toStartOf="@+id/iconeUsuario"
+        app:layout_constraintTop_toTopOf="@+id/fundoLogin" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Senha"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/fundoLogin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.175"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/fundoLogin"
+        app:layout_constraintVertical_bias="0.427" />
+
+    <ImageView
+        android:id="@+id/btnEntrarLogin"
+        android:layout_width="283dp"
+        android:layout_height="41dp"
+        app:layout_constraintBottom_toBottomOf="@+id/fundoLogin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.484"
+        app:layout_constraintStart_toStartOf="@+id/fundoTelaLogin"
+        app:layout_constraintTop_toTopOf="@+id/fundoLogin"
+        app:layout_constraintVertical_bias="0.749"
+        app:srcCompat="@drawable/ic_btn_logarecadastrar" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ENTRAR"
+        app:layout_constraintBottom_toBottomOf="@+id/btnEntrarLogin"
+        app:layout_constraintEnd_toEndOf="@+id/btnEntrarLogin"
+        app:layout_constraintStart_toStartOf="@+id/btnEntrarLogin"
+        app:layout_constraintTop_toTopOf="@+id/btnEntrarLogin" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Não Tem Uma Conta? Cadastre-se"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/fundoLogin"
+        app:layout_constraintEnd_toEndOf="@+id/btnEntrarLogin"
+        app:layout_constraintHorizontal_bias="0.164"
+        app:layout_constraintStart_toStartOf="@+id/btnEntrarLogin"
+        app:layout_constraintTop_toBottomOf="@+id/btnEntrarLogin"
+        app:layout_constraintVertical_bias="0.301" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
