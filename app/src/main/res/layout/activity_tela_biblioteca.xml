@@ -184,9 +184,9 @@
         android:layout_height="69dp"
         android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/botao_menu_biblioteca"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/botao_menu_biblioteca" />
 
     <Button
         android:id="@+id/botaoBiblioteca"
