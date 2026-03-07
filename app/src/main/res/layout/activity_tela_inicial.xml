@@ -41,7 +41,7 @@
         android:id="@+id/textoTelaInicial"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="232dp"
+        android:layout_marginTop="224dp"
         android:fontFamily="@font/josefin_slab_thin"
         android:text="“Seus jogos,\nsuas conquistas\nsua lista..”"
         android:textColor="#FFFFFF"
