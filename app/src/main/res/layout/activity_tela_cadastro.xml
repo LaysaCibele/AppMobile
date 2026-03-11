@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TelaCadastro">
+
+
+    <ImageView
+        android:id="@+id/fundoTelaLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/img_fundotela2e3" />
+
+    <ImageView
+        android:id="@+id/fundoLogin"
+        android:layout_width="397dp"
+        android:layout_height="426dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/fundoTelaLogin"
+        app:layout_constraintVertical_bias="0.422"
+        app:srcCompat="@drawable/img_bloco_cadastro" />
+
+    <ImageView
+        android:id="@+id/iconeSenha"
+        android:layout_width="287dp"
+        android:layout_height="59dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.559"
+        app:srcCompat="@drawable/ic_inputs" />
+
+    <ImageView
+        android:id="@+id/iconeUsuario"
+        android:layout_width="287dp"
+        android:layout_height="59dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.37"
+        app:srcCompat="@drawable/ic_inputs" />
+
+    <ImageView
+        android:id="@+id/iconeEmail"
+        android:layout_width="287dp"
+        android:layout_height="59dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.465"
+        app:srcCompat="@drawable/ic_inputs" />
+
+    <EditText
+        android:id="@+id/hintUsuario"
+        android:layout_width="246dp"
+        android:layout_height="64dp"
+        android:background="@android:color/transparent"
+        android:ems="10"
+        android:inputType="text"
+        android:maxLength="15"
+        app:layout_constraintBottom_toBottomOf="@+id/iconeUsuario"
+        app:layout_constraintEnd_toEndOf="@+id/iconeUsuario"
+        app:layout_constraintHorizontal_bias="0.488"
+        app:layout_constraintStart_toStartOf="@+id/iconeUsuario"
+        app:layout_constraintTop_toTopOf="@+id/iconeUsuario"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <EditText
+        android:id="@+id/hintEmail"
+        android:layout_width="246dp"
+        android:layout_height="64dp"
+        android:background="@android:color/transparent"
+        android:ems="15"
+        android:inputType="textEmailAddress"
+        android:maxLength="30"
+        app:layout_constraintBottom_toBottomOf="@+id/iconeEmail"
+        app:layout_constraintEnd_toEndOf="@+id/iconeEmail"
+        app:layout_constraintHorizontal_bias="0.488"
+        app:layout_constraintStart_toStartOf="@+id/iconeEmail"
+        app:layout_constraintTop_toTopOf="@+id/iconeEmail"
+        app:layout_constraintVertical_bias="0.0" />
+
+
+    <EditText
+        android:id="@+id/hintSenha"
+        android:layout_width="246dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="20dp"
+        android:background="@android:color/transparent"
+        android:ems="10"
+        android:inputType="text|textPassword"
+        android:maxLength="10"
+        app:layout_constraintBottom_toBottomOf="@+id/iconeSenha"
+        app:layout_constraintStart_toStartOf="@+id/iconeSenha"
+        app:layout_constraintTop_toTopOf="@+id/iconeSenha"
+        app:layout_constraintVertical_bias="0.0" />
+
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/gayathri"
+        android:text="Usuário"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/iconeUsuario"
+        app:layout_constraintHorizontal_bias="0.07"
+        app:layout_constraintStart_toStartOf="@+id/iconeUsuario"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.33" />
+
+    <TextView
+        android:id="@+id/tituloCadastro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/gayathri_bold"
+        android:text="Criar Conta"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.468"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.283" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/gayathri"
+        android:text="E-mail"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/iconeUsuario"
+        app:layout_constraintHorizontal_bias="0.068"
+        app:layout_constraintStart_toStartOf="@+id/iconeUsuario"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.423" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Senha"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/iconeSenha"
+        app:layout_constraintHorizontal_bias="0.068"
+        app:layout_constraintStart_toStartOf="@+id/iconeSenha"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.512" />
+
+    <Button
+        android:id="@+id/botaoParaLogin"
+        android:layout_width="277dp"
+        android:layout_height="45dp"
+        android:backgroundTint="#ffffff"
+        android:text="CADASTRE-SE"
+        android:textAlignment="center"
+        android:textColor="#040303"
+        android:textSize="16sp"
+        app:cornerRadius="15dp"
+        app:iconTint="#ffffff"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/iconeSenha"
+        app:layout_constraintStart_toStartOf="@+id/iconeSenha"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.634"
+        app:rippleColor="#4DFFFFFF" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="496dp"
+        android:text="Já Tem Uma Conta?"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/entreLogin"
+        app:layout_constraintEnd_toEndOf="@+id/botaoParaLogin"
+        app:layout_constraintHorizontal_bias="0.226"
+        app:layout_constraintStart_toStartOf="@+id/botaoParaLogin"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/entreLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Entre"
+        android:textColor="#4763F6"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/botaoParaLogin"
+        app:layout_constraintHorizontal_bias="0.762"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/botaoParaLogin"
+        app:layout_constraintVertical_bias="0.008" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
