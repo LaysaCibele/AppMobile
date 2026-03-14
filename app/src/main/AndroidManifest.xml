@@ -27,6 +27,10 @@
             android:name=".TelaLogin"
             android:exported="false" />
         <activity
+            android:name=".TelaCadastro"
+            android:exported="false" />
+
+        <activity
             android:name=".TelaBiblioteca"
             android:exported="false" />
         <activity
