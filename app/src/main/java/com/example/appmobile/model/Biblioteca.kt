@@ -6,5 +6,5 @@ data class Biblioteca(
     val jogoId: String = "",
     val anotacoes: String = "",
     val status: String = "QUERO_JOGAR",
-    val timestamp: Long = System.currentTimeMillis() 
+    val timestamp: Long = System.currentTimeMillis()
 )
