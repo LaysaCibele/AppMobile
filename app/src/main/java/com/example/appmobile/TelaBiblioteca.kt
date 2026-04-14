@@ -2,15 +2,19 @@ package com.example.appmobile
 
 import android.R.id.toggle
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.RelativeLayout
+import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appmobile.model.Jogo
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.appmobile.repository.GameRepository
 import com.example.appmobile.viewModel.GameViewModel
 
 class TelaBiblioteca : AppCompatActivity() {
@@ -62,7 +66,26 @@ class TelaBiblioteca : AppCompatActivity() {
             headerQueroJogar.setOnClickListener { toggle(rvQueroJogar, setaQueroJogar) }
             headerJogando.setOnClickListener { toggle(rvJogando, setaJogando) }
             headerZerados.setOnClickListener { toggle(rvZerados, setaZerados) }
-        }
+
+           /* val titulo = findViewById<TextView>(R.id.tituloBiblioteca)
+            titulo.setOnClickListener {
+                val repo = GameRepository()
+                repo.criarJogoDeTeste { sucesso ->
+                    if (sucesso) {
+                        Log.d("DEBUG_APP", "Jogo salvo no Firebase com sucesso!")
+                        Toast.makeText(this, "Jogo adicionado!", Toast.LENGTH_SHORT).show()
+
+                        viewModel.carregarBiblioteca(1)
+                    } else {
+                        Log.d("DEBUG_APP", "Falha ao salvar no Firebase")
+                        Toast.makeText(this, "Erro ao salvar no banco", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }*/ //Essas linhas que comentei eu usei só para testar o Dinamic
+
+
+                }
+
 
 
         private fun toggle(recycler: RecyclerView, seta: ImageView) {

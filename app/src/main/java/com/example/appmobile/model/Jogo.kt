@@ -11,6 +11,7 @@ data class Jogo(
     val plataformas: String= "",
     val capaImagem: String = "",
     val linkWiki: String = "",
+    val mapa: String = "",
 
     var status: Int = 0,
     var anotacoes: String = "",

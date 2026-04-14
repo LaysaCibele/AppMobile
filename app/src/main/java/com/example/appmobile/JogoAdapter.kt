@@ -1,5 +1,6 @@
 package com.example.appmobile
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,11 +13,11 @@ class JogoAdapter(private val listaJogos: List<Jogo>) :
     RecyclerView.Adapter<JogoAdapter.JogoViewHolder>() {
 
     class JogoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val imgCapaJogo: ShapeableImageView =
-            itemView.findViewById(R.id.imgCapaJogo)
+        val imgCapaJogo: ShapeableImageView = itemView.findViewById(R.id.imgCapaJogo)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): JogoViewHolder {
+
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_jogo, parent, false)
         return JogoViewHolder(view)
@@ -29,8 +30,16 @@ class JogoAdapter(private val listaJogos: List<Jogo>) :
             .load(jogo.capaImagem)
             .placeholder(android.R.drawable.ic_menu_gallery)
             .into(holder.imgCapaJogo)
-    }
 
+        holder.itemView.setOnClickListener {
+            val intent = Intent(holder.itemView.context, TelaDetalhesJogo::class.java)
+
+            intent.putExtra("JOGO_SELECIONADO", jogo)
+
+
+            holder.itemView.context.startActivity(intent)
+        }
+    }
 
     override fun getItemCount(): Int {
         return listaJogos.size
