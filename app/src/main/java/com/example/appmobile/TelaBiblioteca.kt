@@ -40,8 +40,6 @@ class TelaBiblioteca : AppCompatActivity() {
             val intent = Intent(this, TelaPesquisa::class.java)
             startActivity(intent)}
 
-
-
         // QUERO JOGAR
         val headerQueroJogar = findViewById<RelativeLayout>(R.id.headerQueroJogar)
         val rvQueroJogar = findViewById<RecyclerView>(R.id.rvQueroJogar)
