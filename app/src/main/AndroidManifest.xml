@@ -30,6 +30,11 @@
             android:exported="false" />
 
         <activity
+            android:name=".TelaPesquisa"
+            android:exported="false"/>
+
+
+        <activity
             android:name=".TelaBiblioteca"
             android:exported="false" />
 
