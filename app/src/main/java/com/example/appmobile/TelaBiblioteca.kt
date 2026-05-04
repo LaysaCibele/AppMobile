@@ -1,107 +1,101 @@
 package com.example.appmobile
 
-import android.content.Intent
+import android.R.id.toggle
 import android.os.Bundle
+import android.util.Log
 import android.view.View
-import android.widget.Button
-import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.RelativeLayout
+import android.widget.TextView
+import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.appmobile.model.Jogo
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.appmobile.repository.GameRepository
+import com.example.appmobile.viewModel.GameViewModel
 
 class TelaBiblioteca : AppCompatActivity() {
+    private val viewModel: GameViewModel by viewModels()
+        override fun onCreate(savedInstanceState: Bundle?) {
+            super.onCreate(savedInstanceState)
+            setContentView(R.layout.activity_tela_biblioteca)
 
-    // LISTA DE JOGOS PARA TESTE
-    private val listaJogos = listOf(
-        Jogo(R.drawable.arc_raiders),
-        Jogo(R.drawable.stardew),
-        Jogo(R.drawable.terraria),
-        Jogo(R.drawable.silksong),
-        Jogo(R.drawable.silksong),
-        Jogo(R.drawable.silksong)
-    )
+            //ISSO OCULTA A ABA STATUS DO CELULAR
+            window.decorView.systemUiVisibility = (
+                    View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                            or View.SYSTEM_UI_FLAG_FULLSCREEN
+                            or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                    )
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_tela_biblioteca)
 
-        //ISSO OCULTA A ABA STATUS DO CELULAR
-        window.decorView.systemUiVisibility = (
-                View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-                        or View.SYSTEM_UI_FLAG_FULLSCREEN
-                        or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                )
+            val rvQueroJogar = findViewById<RecyclerView>(R.id.rvQueroJogar)
+            val rvJogando = findViewById<RecyclerView>(R.id.rvJogando)
+            val rvZerados = findViewById<RecyclerView>(R.id.rvZerados)
 
-        val botaoPesquisa= findViewById<Button>(R.id.botaoPesquisa)
-        botaoPesquisa.setOnClickListener {
-            val intent = Intent(this, TelaPesquisa::class.java)
-            startActivity(intent)}
+            val headerQueroJogar = findViewById<RelativeLayout>(R.id.headerQueroJogar)
+            val headerJogando = findViewById<RelativeLayout>(R.id.headerJogando)
+            val headerZerados = findViewById<RelativeLayout>(R.id.headerZerados)
 
-        // QUERO JOGAR
-        val headerQueroJogar = findViewById<RelativeLayout>(R.id.headerQueroJogar)
-        val rvQueroJogar = findViewById<RecyclerView>(R.id.rvQueroJogar)
-        val setaQueroJogar = findViewById<ImageView>(R.id.setaQueroJogar)
+            val setaQueroJogar = findViewById<ImageView>(R.id.setaQueroJogar)
+            val setaJogando = findViewById<ImageView>(R.id.setaJogando)
+            val setaZerados = findViewById<ImageView>(R.id.setaZerados)
 
-        rvQueroJogar.layoutManager =
-            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+            rvQueroJogar.layoutManager = GridLayoutManager(this, 4)
+            rvJogando.layoutManager = GridLayoutManager(this, 4)
+            rvZerados.layoutManager = GridLayoutManager(this, 4)
 
-        rvQueroJogar.adapter = JogoAdapter(listaJogos)
+            //conectando ao firebase
+            viewModel.jogosQueroJogar.observe(this) { lista ->
+                rvQueroJogar.adapter = JogoAdapter(lista)
+            }
+            viewModel.jogosJogando.observe(this) { lista ->
+                rvJogando.adapter = JogoAdapter(lista)
+            }
+            viewModel.jogosZerados.observe(this) { lista ->
+                rvZerados.adapter = JogoAdapter(lista)
+            }
 
-        headerQueroJogar.setOnClickListener {
-            toggle(rvQueroJogar, setaQueroJogar)
-        }
+            //aqui vai carregar os dados
+            viewModel.carregarBiblioteca(0)
+            viewModel.carregarBiblioteca(1)
+            viewModel.carregarBiblioteca(2)
 
-        // JOGANDO
-        val headerJogando = findViewById<RelativeLayout>(R.id.headerJogando)
-        val rvJogando = findViewById<RecyclerView>(R.id.rvJogando)
-        val setaJogando = findViewById<ImageView>(R.id.setaJogando)
+            headerQueroJogar.setOnClickListener { toggle(rvQueroJogar, setaQueroJogar) }
+            headerJogando.setOnClickListener { toggle(rvJogando, setaJogando) }
+            headerZerados.setOnClickListener { toggle(rvZerados, setaZerados) }
 
-        rvJogando.layoutManager =
-            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+           /* val titulo = findViewById<TextView>(R.id.tituloBiblioteca)
+            titulo.setOnClickListener {
+                val repo = GameRepository()
+                repo.criarJogoDeTeste { sucesso ->
+                    if (sucesso) {
+                        Log.d("DEBUG_APP", "Jogo salvo no Firebase com sucesso!")
+                        Toast.makeText(this, "Jogo adicionado!", Toast.LENGTH_SHORT).show()
 
-        rvJogando.adapter = JogoAdapter(listaJogos)
+                        viewModel.carregarBiblioteca(1)
+                    } else {
+                        Log.d("DEBUG_APP", "Falha ao salvar no Firebase")
+                        Toast.makeText(this, "Erro ao salvar no banco", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }*/ //Essas linhas que comentei eu usei só para testar o Dinamic
 
-        headerJogando.setOnClickListener {
-            toggle(rvJogando, setaJogando)
-        }
 
-        // ZERADOS
-        val headerZerados = findViewById<RelativeLayout>(R.id.headerZerados)
-        val rvZerados = findViewById<RecyclerView>(R.id.rvZerados)
-        val setaZerados = findViewById<ImageView>(R.id.setaZerados)
+                }
 
-        rvQueroJogar.layoutManager = GridLayoutManager(this, 4)
-        rvQueroJogar.adapter = JogoAdapter(listaJogos)
 
-        rvJogando.layoutManager = GridLayoutManager(this, 4)
-        rvJogando.adapter = JogoAdapter(listaJogos)
 
-        rvZerados.layoutManager = GridLayoutManager(this, 4)
-        rvZerados.adapter = JogoAdapter(listaJogos)
+        private fun toggle(recycler: RecyclerView, seta: ImageView) {
 
-        /* GRID HORIZONTAL
-        rvZerados.layoutManager =
-            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-
-            (isso aq a gente pode usar para a aba de search futuramente)
-        */
-
-        headerZerados.setOnClickListener {
-            toggle(rvZerados, setaZerados)
-        }
-    }
-
-    private fun toggle(recycler: RecyclerView, seta: ImageView) {
-
-        if (recycler.visibility == View.GONE) {
-            recycler.visibility = View.VISIBLE
-            seta.rotation = 180f
-        } else {
-            recycler.visibility = View.GONE
-            seta.rotation = 0f
+            if (recycler.visibility == View.GONE) {
+                recycler.visibility = View.VISIBLE
+                seta.rotation = 180f
+            } else {
+                recycler.visibility = View.GONE
+                seta.rotation = 0f
+            }
         }
     }
-}

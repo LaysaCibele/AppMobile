@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.google.gms.google.services)
+
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -36,6 +37,7 @@ android {
 }
 
 dependencies {
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -43,8 +45,17 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.recyclerview)
     implementation(libs.androidx.fragment)
-    implementation(libs.firebase.firestore)
+
+
+    implementation("com.google.firebase:firebase-auth-ktx:23.0.0")
+    implementation("com.google.firebase:firebase-firestore-ktx:25.0.0")
+    implementation("com.google.firebase:firebase-analytics-ktx:22.0.0")
+
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+    implementation("androidx.activity:activity-ktx:1.8.2")
 }
