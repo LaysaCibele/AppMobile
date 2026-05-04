@@ -71,10 +71,14 @@ class TelaLogin : AppCompatActivity() {
 
             if (email.isEmpty()) {
                 editTextEmail.error = "Digite o seu e-mail"
-            } else if (senha.isEmpty()) {
+            }
+            
+            else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                editTextEmail.error = "Formato de e-mail inválido"
+            }
+            else if (senha.isEmpty()) {
                 editTextSenha.error = "Digite a sua senha"
             } else {
-                // Chama o login pelo firebase
                 viewModel.realizarLogin(email, senha)
             }
         }

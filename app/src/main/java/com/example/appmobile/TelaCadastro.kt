@@ -92,14 +92,18 @@
                 editTextEmail.error = "E-mail obrigatório"
                 return false
             }
+            // Nova verificação de formato de e-mail (checa @ e .com)
+            if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                editTextEmail.error = "Digite um e-mail válido (ex: nome@email.com)"
+                return false
+            }
             if (senha.length < 6) {
                 editTextSenha.error = "A senha precisa de 6 dígitos"
                 return false
             }
             return true
-            }
-
         }
+    }
 
 
 
