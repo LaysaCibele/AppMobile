@@ -1,9 +1,11 @@
 package com.example.appmobile
 
 import android.R.id.toggle
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
@@ -16,6 +18,7 @@ import com.example.appmobile.model.Jogo
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.appmobile.repository.GameRepository
 import com.example.appmobile.viewModel.GameViewModel
+import android.widget.ImageButton
 
 class TelaBiblioteca : AppCompatActivity() {
     private val viewModel: GameViewModel by viewModels()
@@ -30,6 +33,11 @@ class TelaBiblioteca : AppCompatActivity() {
                             or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                     )
 
+            val botaoPesquisa = findViewById<Button>(R.id.botaoPesquisa)
+            botaoPesquisa.setOnClickListener {
+                val intent = Intent(this, TelaPesquisa::class.java)
+                startActivity(intent)
+            }
 
             val rvQueroJogar = findViewById<RecyclerView>(R.id.rvQueroJogar)
             val rvJogando = findViewById<RecyclerView>(R.id.rvJogando)
