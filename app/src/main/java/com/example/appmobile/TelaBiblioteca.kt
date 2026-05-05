@@ -67,7 +67,7 @@ class TelaBiblioteca : AppCompatActivity() {
             headerJogando.setOnClickListener { toggle(rvJogando, setaJogando) }
             headerZerados.setOnClickListener { toggle(rvZerados, setaZerados) }
 
-           /* val titulo = findViewById<TextView>(R.id.tituloBiblioteca)
+           val titulo = findViewById<TextView>(R.id.tituloBiblioteca)
             titulo.setOnClickListener {
                 val repo = GameRepository()
                 repo.criarJogoDeTeste { sucesso ->
@@ -81,7 +81,7 @@ class TelaBiblioteca : AppCompatActivity() {
                         Toast.makeText(this, "Erro ao salvar no banco", Toast.LENGTH_SHORT).show()
                     }
                 }
-            }*/ //Essas linhas que comentei eu usei só para testar o Dinamic
+            } //Essas linhas que comentei eu usei só para testar o Dinamic
 
 
                 }
