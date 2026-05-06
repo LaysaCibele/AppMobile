@@ -82,4 +82,34 @@ class GameRepository {
             .addOnSuccessListener { callback(true) }
             .addOnFailureListener { callback(false) }
     }
+
+    fun buscarCatalogoGeral(callback: (List<Jogo>) -> Unit) {
+        db.collection("catalogo_jogos")
+            .get()
+            .addOnSuccessListener { result ->
+                val lista = result.toObjects(Jogo::class.java)
+                callback(lista)
+            }
+            .addOnFailureListener {
+                Log.e("DEBUG_APP", "Erro ao buscar catálogo: ${it.message}")
+                callback(emptyList())
+            }
+    }
+
+    fun salvarNoMeuInventario(jogo: Jogo, statusEscolhido: Int, callback: (Boolean) -> Unit) {
+        val userId = auth.currentUser?.uid ?: return
+
+        val jogoParaSalvar = jogo.copy(
+            status = statusEscolhido,
+            idUsuario = userId,
+            dataAdicionado = System.currentTimeMillis()
+        )
+
+        db.collection("usuarios").document(userId)
+            .collection("meus_jogos")
+            .add(jogoParaSalvar)
+            .addOnSuccessListener { callback(true) }
+            .addOnFailureListener { callback(false) }
+    }
+
 }

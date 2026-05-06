@@ -57,13 +57,25 @@ class TelaBiblioteca : AppCompatActivity() {
 
             //conectando ao firebase
             viewModel.jogosQueroJogar.observe(this) { lista ->
-                rvQueroJogar.adapter = JogoAdapter(lista)
+                rvQueroJogar.adapter = JogoAdapter(lista) { jogo ->
+                    val intent = Intent(this, TelaDetalhesJogo::class.java)
+                    intent.putExtra("JOGO_SELECIONADO", jogo)
+                    startActivity(intent)
+                }
             }
             viewModel.jogosJogando.observe(this) { lista ->
-                rvJogando.adapter = JogoAdapter(lista)
+                rvJogando.adapter = JogoAdapter(lista) { jogo ->
+                    val intent = Intent(this, TelaDetalhesJogo::class.java)
+                    intent.putExtra("JOGO_SELECIONADO", jogo)
+                    startActivity(intent)
+                }
             }
             viewModel.jogosZerados.observe(this) { lista ->
-                rvZerados.adapter = JogoAdapter(lista)
+                rvZerados.adapter = JogoAdapter(lista) { jogo ->
+                    val intent = Intent(this, TelaDetalhesJogo::class.java)
+                    intent.putExtra("JOGO_SELECIONADO", jogo)
+                    startActivity(intent)
+                }
             }
 
             //aqui vai carregar os dados
@@ -75,7 +87,8 @@ class TelaBiblioteca : AppCompatActivity() {
             headerJogando.setOnClickListener { toggle(rvJogando, setaJogando) }
             headerZerados.setOnClickListener { toggle(rvZerados, setaZerados) }
 
-           val titulo = findViewById<TextView>(R.id.tituloBiblioteca)
+           /*
+            val titulo = findViewById<TextView>(R.id.tituloBiblioteca)
             titulo.setOnClickListener {
                 val repo = GameRepository()
                 repo.criarJogoDeTeste { sucesso ->
@@ -89,7 +102,9 @@ class TelaBiblioteca : AppCompatActivity() {
                         Toast.makeText(this, "Erro ao salvar no banco", Toast.LENGTH_SHORT).show()
                     }
                 }
-            } //Essas linhas que comentei eu usei só para testar o Dinamic
+            }
+            //Essas linhas que comentei eu usei só para testar o Dinamic
+            */
 
 
                 }

@@ -1,6 +1,5 @@
 package com.example.appmobile
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,15 +8,17 @@ import com.google.android.material.imageview.ShapeableImageView
 import com.example.appmobile.model.Jogo
 import com.bumptech.glide.Glide
 
-class JogoAdapter(private val listaJogos: List<Jogo>) :
-    RecyclerView.Adapter<JogoAdapter.JogoViewHolder>() {
+//Refiz esse kt para permitir que ao clicar no card do jogo, haja tanto o pop-up quanto a tela de detalhes.
+class JogoAdapter(
+    private val listaJogos: List<Jogo>,
+    private val onItemClick: (Jogo) -> Unit // Isso permite personalizar o clique
+) : RecyclerView.Adapter<JogoAdapter.JogoViewHolder>() {
 
     class JogoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val imgCapaJogo: ShapeableImageView = itemView.findViewById(R.id.imgCapaJogo)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): JogoViewHolder {
-
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_jogo, parent, false)
         return JogoViewHolder(view)
@@ -31,17 +32,11 @@ class JogoAdapter(private val listaJogos: List<Jogo>) :
             .placeholder(android.R.drawable.ic_menu_gallery)
             .into(holder.imgCapaJogo)
 
+        // Aqui o clique vai executar aquilo que for mandado
         holder.itemView.setOnClickListener {
-            val intent = Intent(holder.itemView.context, TelaDetalhesJogo::class.java)
-
-            intent.putExtra("JOGO_SELECIONADO", jogo)
-
-
-            holder.itemView.context.startActivity(intent)
+            onItemClick(jogo)
         }
     }
 
-    override fun getItemCount(): Int {
-        return listaJogos.size
-    }
+    override fun getItemCount(): Int = listaJogos.size
 }
