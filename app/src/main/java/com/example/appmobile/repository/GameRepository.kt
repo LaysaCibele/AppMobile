@@ -60,6 +60,7 @@ class GameRepository {
         }
     }
 
+    /*
     fun criarJogoDeTeste(callback: (Boolean) -> Unit) {
         val userId = auth.currentUser?.uid ?: return
 
@@ -82,6 +83,7 @@ class GameRepository {
             .addOnSuccessListener { callback(true) }
             .addOnFailureListener { callback(false) }
     }
+     */
 
     fun buscarCatalogoGeral(callback: (List<Jogo>) -> Unit) {
         db.collection("catalogo_jogos")
@@ -99,17 +101,36 @@ class GameRepository {
     fun salvarNoMeuInventario(jogo: Jogo, statusEscolhido: Int, callback: (Boolean) -> Unit) {
         val userId = auth.currentUser?.uid ?: return
 
+
+        val novoDocumentoRef = db.collection("usuarios")
+            .document(userId)
+            .collection("meus_jogos")
+            .document() // Isso cria um ID novo no Firebase sem salvar ainda
+
         val jogoParaSalvar = jogo.copy(
+            id = novoDocumentoRef.id,
             status = statusEscolhido,
             idUsuario = userId,
             dataAdicionado = System.currentTimeMillis()
         )
 
-        db.collection("usuarios").document(userId)
-            .collection("meus_jogos")
-            .add(jogoParaSalvar)
+        novoDocumentoRef.set(jogoParaSalvar)
             .addOnSuccessListener { callback(true) }
             .addOnFailureListener { callback(false) }
     }
+
+    fun atualizarAnotacoes(jogoId: String, novasAnotacoes: String, callback: (Boolean) -> Unit) {
+        val userId = auth.currentUser?.uid ?: return
+
+        if (jogoId.isEmpty()) return
+
+        db.collection("usuarios").document(userId)
+            .collection("meus_jogos").document(jogoId)
+            .update("anotacoes", novasAnotacoes)
+            .addOnSuccessListener { callback(true) }
+            .addOnFailureListener { callback(false) }
+    }
+
+
 
 }

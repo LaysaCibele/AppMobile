@@ -77,13 +77,15 @@ class TelaDetalhesJogo : AppCompatActivity() {
 
         btnSalvar.setOnClickListener {
             val novasAnotacoes = editAnotacoes.text.toString()
-            val atualizacao = mapOf("anotacoes" to novasAnotacoes)
 
-            repository.atualizarJogo(jogo.id, atualizacao) { sucesso ->
+            repository.atualizarAnotacoes(jogo.id, novasAnotacoes) { sucesso ->
                 if (sucesso) {
                     Toast.makeText(this, "Anotações salvas!", Toast.LENGTH_SHORT).show()
+
+                    // Isso evita a tela preta ao salvar a anotaçãop
+                    finish()
                 } else {
-                    Toast.makeText(this, "Erro ao salvar.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Erro ao salvar no banco de dados.", Toast.LENGTH_SHORT).show()
                 }
             }
         }
