@@ -74,6 +74,12 @@ class TelaDetalhesJogo : AppCompatActivity() {
             }
         }
 
+        val btnVoltar = findViewById<ImageView>(R.id.btnVoltarDetalhe)
+
+        btnVoltar.setOnClickListener {
+            // Isso encerra a tela de detalhes e volta para a biblioteca que já estava aberta embaixo
+            finish()
+        }
 
         btnSalvar.setOnClickListener {
             val novasAnotacoes = editAnotacoes.text.toString()

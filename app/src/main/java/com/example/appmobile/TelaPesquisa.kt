@@ -31,8 +31,6 @@ class TelaPesquisa : AppCompatActivity() {
             }
         }
 
-        findViewById<Button>(R.id.botaoBiblioteca).setOnClickListener {
-
         val botaoBiblioteca= findViewById<Button>(R.id.botaoBiblioteca)
         botaoBiblioteca.setOnClickListener {
             val intent = Intent(this, TelaBiblioteca::class.java)
