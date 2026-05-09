@@ -21,6 +21,7 @@ class TelaPesquisa : AppCompatActivity() {
         setContentView(R.layout.activity_tela_pesquisa)
 
 
+
         rvCatalogo = findViewById(R.id.rvCatalogoGeral)
         rvCatalogo.layoutManager = GridLayoutManager(this, 3)
 
@@ -31,6 +32,9 @@ class TelaPesquisa : AppCompatActivity() {
         }
 
         findViewById<Button>(R.id.botaoBiblioteca).setOnClickListener {
+
+        val botaoBiblioteca= findViewById<Button>(R.id.botaoBiblioteca)
+        botaoBiblioteca.setOnClickListener {
             val intent = Intent(this, TelaBiblioteca::class.java)
             startActivity(intent)
         }

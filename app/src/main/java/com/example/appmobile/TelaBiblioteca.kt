@@ -39,6 +39,12 @@ class TelaBiblioteca : AppCompatActivity() {
                 startActivity(intent)
             }
 
+            val botaoSair = findViewById<Button>(R.id.botaoSair)
+            botaoSair.setOnClickListener {
+                val intent = Intent(this, TelaInicial::class.java)
+                startActivity(intent)
+            }
+
             val rvQueroJogar = findViewById<RecyclerView>(R.id.rvQueroJogar)
             val rvJogando = findViewById<RecyclerView>(R.id.rvJogando)
             val rvZerados = findViewById<RecyclerView>(R.id.rvZerados)
