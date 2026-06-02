@@ -92,11 +92,22 @@
                 editTextEmail.error = "E-mail obrigatório"
                 return false
             }
-            // Nova verificação de formato de e-mail (checa @ e .com)
+            // Nova verificação de formato de e-mail (checa @ e caracteres válidos)
             if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
                 editTextEmail.error = "Digite um e-mail válido (ex: nome@email.com)"
                 return false
             }
+
+            val provedoresValidos = listOf("gmail.com", "hotmail.com", "outlook.com", "yahoo.com", "live.com")
+
+            val dominioDigitado = email.substringAfter("@").lowercase().trim()
+
+            if (!provedoresValidos.contains(dominioDigitado)) {
+                editTextEmail.error = "Domínio inválido! Use Gmail, Hotmail ou Outlook bem escrito."
+                return false
+            }
+
+
             if (senha.length < 6) {
                 editTextSenha.error = "A senha precisa de 6 dígitos"
                 return false

@@ -39,6 +39,9 @@ class TelaDetalhesJogo : AppCompatActivity() {
             jogo = jogoRecebido
         }
 
+        // 1. CAPTURA A FLAG PARA SABER DE ONDE O USUÁRIO VEIO
+        val veioDoCatalogo = intent.getBooleanExtra("VEIO_DO_CATALOGO", false)
+
         val imgCapa = findViewById<ImageView>(R.id.imgCapaDetalhe)
         val txtTitulo = findViewById<TextView>(R.id.txtTituloDetalhe)
         val txtGenero = findViewById<TextView>(R.id.txtGeneroDetalhe)
@@ -47,6 +50,10 @@ class TelaDetalhesJogo : AppCompatActivity() {
         val btnSalvar = findViewById<Button>(R.id.btnSalvarAnotacoes)
         val btnWiki = findViewById<LinearLayout>(R.id.btnWiki)
         val btnMapa = findViewById<LinearLayout>(R.id.btnMapa)
+
+        // 2. BUSCA O BOTÃO DE ADICIONAR (REAPROVEITANDO O ID DO BOTÃO DE PESQUISA DO SEU XML CASO QUEIRA, OU ADICIONE UM NOVO)
+        // Dica: Para não quebrar o layout, você pode usar o id do próprio btnSalvar ou usar um botão transparente por cima
+        val btnAdicionarEstante = findViewById<Button>(R.id.btnSalvarAnotacoes)
 
         //  UI Dinamica
         txtTitulo.text = jogo.nome
@@ -58,7 +65,6 @@ class TelaDetalhesJogo : AppCompatActivity() {
             .load(jogo.capaImagem)
             .placeholder(android.R.drawable.ic_menu_gallery)
             .into(imgCapa)
-
 
         // Clique para abrir a Wiki
         btnWiki.setOnClickListener {
@@ -81,23 +87,49 @@ class TelaDetalhesJogo : AppCompatActivity() {
         }
 
         val btnVoltar = findViewById<ImageView>(R.id.btnVoltarDetalhe)
-
         btnVoltar.setOnClickListener {
-            // Isso encerra a tela de detalhes e volta para a biblioteca que já estava aberta embaixo
             finish()
         }
 
-        btnSalvar.setOnClickListener {
-            val novasAnotacoes = editAnotacoes.text.toString()
 
-            repository.atualizarAnotacoes(jogo.id, novasAnotacoes) { sucesso ->
-                if (sucesso) {
-                    Toast.makeText(this, "Anotações salvas!", Toast.LENGTH_SHORT).show()
+        if (veioDoCatalogo) {
+            // Esconde o campo de anotações porque o jogo ainda não foi adicionado
+            editAnotacoes.visibility = View.GONE
 
-                    // Isso evita a tela preta ao salvar a anotaçãop
-                    finish()
-                } else {
-                    Toast.makeText(this, "Erro ao salvar no banco de dados.", Toast.LENGTH_SHORT).show()
+            btnAdicionarEstante.text = "Adicionar à Estante"
+
+            btnAdicionarEstante.setOnClickListener {
+                val opcoes = arrayOf("Quero Jogar", "Jogando", "Zerado")
+
+                android.app.AlertDialog.Builder(this)
+                    .setTitle("Adicionar à sua estante")
+                    .setItems(opcoes) { _, which ->
+                        repository.salvarNoMeuInventario(jogo, which) { sucesso ->
+                            if (sucesso) {
+                                Toast.makeText(this, "${jogo.nome} adicionado!", Toast.LENGTH_SHORT).show()
+                                finish() // Volta para a tela de catálogo
+                            } else {
+                                Toast.makeText(this, "Erro ao adicionar jogo.", Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                    }
+                    .show()
+            }
+        } else {
+            //SE VIER DA BIBLIOTECA - SALVA ANOTAÇÕES
+            editAnotacoes.visibility = View.VISIBLE
+            btnSalvar.text = "Salvar Alterações"
+
+            btnSalvar.setOnClickListener {
+                val novasAnotacoes = editAnotacoes.text.toString()
+
+                repository.atualizarAnotacoes(jogo.id, novasAnotacoes) { sucesso ->
+                    if (sucesso) {
+                        Toast.makeText(this, "Anotações salvas!", Toast.LENGTH_SHORT).show()
+                        finish()
+                    } else {
+                        Toast.makeText(this, "Erro ao salvar no banco de dados.", Toast.LENGTH_SHORT).show()
+                    }
                 }
             }
         }

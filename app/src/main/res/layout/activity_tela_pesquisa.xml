@@ -30,7 +30,7 @@
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:layout_marginTop="36dp"
-              android:text="Pesquisar Jogos"
+              android:text="Catálogo de Jogos"
               android:textColor="#FFFFFF"
               android:textSize="24sp"
               app:layout_constraintEnd_toEndOf="parent"
@@ -54,7 +54,7 @@
                   android:layout_height="wrap_content"
                   android:layout_marginStart="15dp"
                   android:layout_marginTop="20dp"
-                  android:text="Catálogo de Jogos"
+                  android:text="Descubra novas histórias. Monte a sua estante e entre neste universo!"
                   android:textColor="#ffffff"
                   android:textSize="18sp"
                   android:textStyle="bold" />

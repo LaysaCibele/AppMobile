@@ -1,6 +1,5 @@
 package com.example.appmobile
 
-
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -27,20 +26,38 @@ class TelaPesquisa : AppCompatActivity() {
                         or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                 )
 
-
         rvCatalogo = findViewById(R.id.rvCatalogoGeral)
         rvCatalogo.layoutManager = GridLayoutManager(this, 3)
 
         repository.buscarCatalogoGeral { listaJogos ->
             rvCatalogo.adapter = JogoAdapter(listaJogos) { jogoClicado ->
-                mostrarDialogoStatus(jogoClicado)
+                val intent = Intent(this, TelaDetalhesJogo::class.java)
+                intent.putExtra("JOGO_SELECIONADO", jogoClicado)
+                intent.putExtra("VEIO_DO_CATALOGO", true)
+                startActivity(intent)
             }
         }
 
-        val botaoBiblioteca= findViewById<Button>(R.id.botaoBiblioteca)
+        val botaoBiblioteca = findViewById<Button>(R.id.botaoBiblioteca)
         botaoBiblioteca.setOnClickListener {
             val intent = Intent(this, TelaBiblioteca::class.java)
             startActivity(intent)
+        }
+
+        //  ADICIONADO: MAPEAMENTO E LÓGICA DO BOTÃO SAIR NO CATÁLOGO
+        val botaoSair = findViewById<Button>(R.id.botaoSair)
+        botaoSair.setOnClickListener {
+            // 1. Desloga o usuário da conta do Firebase de verdade
+            com.google.firebase.auth.FirebaseAuth.getInstance().signOut()
+
+            // 2. Prepara a intenção de ir para a TelaInicial
+            val intent = Intent(this, TelaInicial::class.java)
+
+            // 3. Esta flag limpa toda a pilha de telas na memória (Garante segurança máxima)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+
+            startActivity(intent)
+            finish() // Fecha a TelaPesquisa definitivamente
         }
     }
 
@@ -51,7 +68,6 @@ class TelaPesquisa : AppCompatActivity() {
         android.app.AlertDialog.Builder(this)
             .setTitle("Adicionar à sua estante")
             .setItems(opcoes) { _, which ->
-                // 'which' envia 0, 1 ou 2 para o Firebase
                 repository.salvarNoMeuInventario(jogo, which) { sucesso ->
                     if (sucesso) {
                         Toast.makeText(this, "${jogo.nome} adicionado!", Toast.LENGTH_SHORT).show()
@@ -61,6 +77,5 @@ class TelaPesquisa : AppCompatActivity() {
                 }
             }
             .show()
-
     }
 }
